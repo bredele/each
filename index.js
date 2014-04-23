@@ -4,11 +4,13 @@
  */
 
 module.exports = function(obj, fn, scope){
+  scope = scope || this;
   if( obj instanceof Array) {
     array(obj, fn, scope);
   } else if(typeof obj === 'object') {
     object(obj, fn, scope);
   }
+  return this;
 };
 
 
