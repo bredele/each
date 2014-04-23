@@ -10,7 +10,6 @@ module.exports = function(obj, fn, scope){
   } else if(typeof obj === 'object') {
     object(obj, fn, scope);
   }
-  return this;
 };
 
 
