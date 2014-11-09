@@ -5,9 +5,12 @@
 
 module.exports = function(obj, fn, scope) {
   scope = scope || this;
-  if(obj instanceof Array) array(obj, fn, scope);
+  if( obj instanceof Array) array(obj, fn, scope);
   else object(obj, fn, scope);
 };
+
+
+exports.array = array;
 
 
 /**
