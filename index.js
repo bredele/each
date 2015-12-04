@@ -1,16 +1,15 @@
 
 /**
- * Expose 'looping'
+ * Expose 'loop'
  */
 
-module.exports = function(obj, fn, scope) {
+module.exports = loop;
+
+function loop(obj, fn, scope) {
   scope = scope || this;
-  if( obj instanceof Array) array(obj, fn, scope);
-  else object(obj, fn, scope);
+  if(obj instanceof Array) loop.array(obj, fn, scope);
+  else loop.object(obj, fn, scope);
 };
-
-
-exports.array = array;
 
 
 /**
@@ -22,7 +21,7 @@ exports.array = array;
  * @api private
  */
 
-function object(obj, fn, scope) {
+loop.object = function(obj, fn, scope) {
   for (var i in obj) {
     if (obj.hasOwnProperty(i)) {
       fn.call(scope, i, obj[i]);
@@ -40,7 +39,7 @@ function object(obj, fn, scope) {
  * @api private
  */
 
-function array(obj, fn, scope) {
+loop.array = function(obj, fn, scope) {
   for(var i = 0, l = obj.length; i < l; i++) {
     fn.call(scope, i, obj[i]);
   }
